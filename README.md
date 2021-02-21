@@ -7,3 +7,8 @@ This is an application that helps the user to keep track of their expense.
 3rd commit: Printing total expense on DOM
 4th commit: Adding another input element for taking expense description.
 5th commit: Creating an object with Amount and description in it and pushing it into an array to store all expenses.
+6th commit: Templating, adding a table, map. (learn about map)
+
+
+
+textContent will print html tags as well, avoid this by using innerHtml
