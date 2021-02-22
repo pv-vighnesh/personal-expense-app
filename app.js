@@ -56,7 +56,6 @@ function addExpense() {
     const allExpenseHTML = allExpense.map(expense => createList(expense));
 
     const allExpenseHTMLJoined = allExpenseHTML.join("");
-    console.log(allExpenseHTMLJoined);
     expenseTable.innerHTML = allExpenseHTMLJoined;
 }
 
@@ -77,7 +76,11 @@ function createList ({ desc, amount, moment }) {
                 <span class="px-5">
                     ${amount}
                 </span>
-                <button type="button" class="btn btn-outline-danger btn-sm">
+                <button 
+                    type="button" 
+                    class="btn btn-outline-danger btn-sm"
+                    onclick="deleteItem(${moment.valueOf()})"
+                    >
                     <i class="fas fa-trash-alt"></i>
                 </button>
                 </div>
@@ -94,6 +97,16 @@ function getTime(time) {
         month: 'long',
         day: 'numeric'
     });
+}
+
+// function to delete item from Expense table
+function deleteItem(dateValue) {
+    for (let i = 0; i < allExpense.length; i++) {
+        if (allExpense[i].moment.valueOf() === dateValue) {
+            console.log("item found");
+        }
+        
+    }
 }
 
 
