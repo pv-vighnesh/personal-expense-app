@@ -52,9 +52,7 @@ function addExpense() {
     headingAmout.textContent = displayText;
 
     // Display Expense table
-    const allExpenseHTML = allExpense.map(expense => {
-        return `<div> ${expense.amount} :: ${expense.desc} </div>`
-    });
+    const allExpenseHTML = allExpense.map(expense => createList(expense));
 
     const allExpenseHTMLJoined = allExpenseHTML.join("");
     console.log(allExpenseHTMLJoined);
@@ -64,6 +62,28 @@ function addExpense() {
 // add event listener
 element.addEventListener("click", addExpense, false);
  
-
+// function to create HTML for Expense table
+function createList ({ desc, amount }) {
+    return `
+    <div>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between">
+                <div class="d-flex flex-column">
+                    ${desc}
+                    <small class="text-muted">March 11, 2019</small>
+                </div>
+                <div>
+                <span class="px-5">
+                    ${amount}
+                </span>
+                <button type="button" class="btn btn-outline-danger btn-sm">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    `
+}
 
 
