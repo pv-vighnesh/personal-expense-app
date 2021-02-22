@@ -12,5 +12,7 @@ This is an application that helps the user to keep track of their expense.
 Introducing bootstrap into the project. Made UI look cool.
 Cleaned the JS code a bit and did some destructring of Js.
 read about destructuring in javascript
+8th commit: DATE ;)
+Adding a date funtion to get current date to use it in expense table.
 
 textContent will print html tags as well, avoid this by using innerHtml

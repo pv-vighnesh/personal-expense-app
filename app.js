@@ -40,6 +40,7 @@ function addExpense() {
     // adding Amount and description to the object
     expenseItem.amount = expense;
     expenseItem.desc = description;
+    expenseItem.moment = new Date();
 
     // pusing the object into the array
     allExpense.push(expenseItem);
@@ -63,14 +64,14 @@ function addExpense() {
 element.addEventListener("click", addExpense, false);
  
 // function to create HTML for Expense table
-function createList ({ desc, amount }) {
+function createList ({ desc, amount, moment }) {
     return `
     <div>
         <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between">
                 <div class="d-flex flex-column">
                     ${desc}
-                    <small class="text-muted">March 11, 2019</small>
+                    <small class="text-muted">${getTime(moment)}</small>
                 </div>
                 <div>
                 <span class="px-5">
@@ -84,6 +85,15 @@ function createList ({ desc, amount }) {
         </ul>
     </div>
     `
+}
+
+// funtion to get current date
+function getTime(time) {
+    return time.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
 }
 
 
