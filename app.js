@@ -1,23 +1,15 @@
+// get the data from Element
+const inputElement = document.querySelector("#expenseAmount");
+const element = document.querySelector("#addBtn");
+const headingAmout = document.querySelector("#outputAmount");
+const expenseDesc = document.querySelector("#desc")
+const expenseTable = document.querySelector("#expenseTable");
+
 // variable to store total expense
 let totalExpense = 0;
 
 // Array to store all the expenses 
 const allExpense = [];
-
-// get the value from Input Element
-const inputElement = document.querySelector("#expenseAmount");
-
-// get element from the document
-const element = document.querySelector("#addBtn");
-
-// get the heading element from the DOM
-const headingAmout = document.querySelector("#outputAmount");
-
-// get the expense description element
-const expenseDesc = document.querySelector("#desc")
-
-// get the expense table element
-const expenseTable = document.querySelector("#expenseTable");
 
 //  set the heading element to the value of total expense
 headingAmout.textContent = totalExpense;
@@ -38,10 +30,12 @@ function addExpense() {
     const expense = parseInt(textAmount, 10);
 
     // adding Amount and description to the object
+if (description !== "" && !isNaN(expense) && expense > 0) {
     expenseItem.amount = expense;
     expenseItem.desc = description;
     expenseItem.moment = new Date();
 
+}
     // pusing the object into the array
     allExpense.push(expenseItem);
 
@@ -53,10 +47,7 @@ function addExpense() {
     headingAmout.textContent = displayText;
 
     // Display Expense table
-    const allExpenseHTML = allExpense.map(expense => createList(expense));
-
-    const allExpenseHTMLJoined = allExpenseHTML.join("");
-    expenseTable.innerHTML = allExpenseHTMLJoined;
+    renderNewList(allExpense);
 }
 
 // add event listener
@@ -101,12 +92,27 @@ function getTime(time) {
 
 // function to delete item from Expense table
 function deleteItem(dateValue) {
-    for (let i = 0; i < allExpense.length; i++) {
-        if (allExpense[i].moment.valueOf() === dateValue) {
-            console.log("item found");
-        }
-        
-    }
+    // const filteredArr = [];
+    // for (let i = 0; i < allExpense.length; i++) {
+    //     if (allExpense[i].moment.valueOf() === dateValue) {
+    //         filteredArr.push(allExpense[i]);
+    //     }
+    // }
+
+    // const filteredArr = allExpense.filter(expense => {
+    //     if(expense.moment.valueOf() !== dateValue) {
+    //         return expense;
+    //     }
+    // })
+
+    const filteredArr = allExpense
+                        .filter(expense => expense.moment.valueOf() !== dateValue)
+    renderNewList(filteredArr);
 }
 
 
+function renderNewList(newArray) {
+    const allExpenseHTML = newArray.map(expense => createList(expense));
+    const allExpenseHTMLJoined = allExpenseHTML.join("");
+    expenseTable.innerHTML = allExpenseHTMLJoined;
+}
