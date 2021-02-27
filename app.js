@@ -7,7 +7,7 @@ let totalExpense = 0;
 
 headingAmout.textContent = totalExpense;
 
-const allExpense = [];
+let allExpense = [];
 
 function addExpense() {
 
@@ -17,17 +17,17 @@ function addExpense() {
     const expense = parseInt(textAmount, 10);
 
     if (description !== "" && !isNaN(expense) && expense > 0) {
-    expenseItem.amount = expense;
-    expenseItem.desc = description;
-    expenseItem.moment = new Date();
+        expenseItem.amount = expense;
+        expenseItem.desc = description;
+        expenseItem.moment = new Date();
 
-    totalExpense += expense;
-    updateTotal();
-    allExpense.push(expenseItem);
+        totalExpense += expense;
+        updateTotal();
+        allExpense.push(expenseItem);
 
-    renderNewList(allExpense);
-    inputElement.value = "";
-    expenseDesc.value = "";
+        renderNewList(allExpense);
+        inputElement.value = "";
+        expenseDesc.value = "";
     }
 }
 
@@ -71,7 +71,11 @@ function renderNewList(newArray) {
 }
  
 // function to create HTML for Expense table
-function createList ({ desc, amount, moment }) {
+function createList ({ 
+    desc, 
+    amount, 
+    moment 
+    }) {
     return `
             <li class="list-group-item d-flex justify-content-between">
                 <div class="d-flex flex-column">
